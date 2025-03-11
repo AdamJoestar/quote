@@ -11,12 +11,47 @@ class QuoteList extends StatefulWidget {
 }
 
 class _QuoteListState extends State<QuoteList> {
-
   List<Quote> quotes = [
-    Quote(author: 'Oscar Wilde', text: 'Be yourself everyone else is already taken'),
-    Quote(author: 'Jajang Suherman ' , text: 'Jangan makan sebelum lapar'),
-    Quote(author: 'Jajang Sukuna ' , text: 'Jangan minum sebelum haus'),
+    Quote(
+      author: 'Oscar Wilde',
+      text: 'Be yourself everyone else is already taken',
+    ),
+    Quote(author: 'Jajang Suherman ', text: 'Jangan makan sebelum lapar'),
+    Quote(author: 'Jajang Sukuna ', text: 'Jangan minum sebelum haus'),
   ];
+
+  Widget quoteTemplate(quote) {
+    return Card(
+      margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Center(
+              child: Text(
+                quote.text,
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.grey[800],
+                ),
+              ),
+            ),
+            SizedBox(height: 6),
+            Center(
+              child: Text(
+                quote.author,
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.grey[600],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +66,7 @@ class _QuoteListState extends State<QuoteList> {
         backgroundColor: const Color.fromARGB(255, 0, 0, 0),
       ),
       body: Column(
-        children: quotes.map((quote) => Text('${quote.text} By ${quote.author}')).toList(),
+        children: quotes.map((quote) => quoteTemplate(quote)).toList(),
       ),
     );
   }
